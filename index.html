@@ -2,73 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courtly | Modern Scorekeeper</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Courtly | Scorekeeper</title>
     <link id="favicon" rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/806/806131.png">
-    
     <link rel="stylesheet" href="style.css">
-
-    <button onclick="undo()" class="icon-btn" title="Undo">⟲</button>
-    <button onclick="swapSides()" class="icon-btn">🔄</button>
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
-    <div class="app-container">
-        <nav class="top-nav">
-            <div class="logo">
-                <span class="dot"></span>
-                <h1>COURTLY</h1>
+    <div class="app-wrapper">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2>SETTINGS</h2>
+                <button onclick="toggleSidebar()" class="close-sidebar">×</button>
             </div>
-            <button id="settingsBtn" class="icon-btn">⚙️</button>
-        </nav>
-
-        <main class="scoreboard">
-            <div class="card p1-card">
-                <input type="text" value="TEAM 1" class="team-name">
-                <div id="score1" class="score-display">0</div>
-                <div class="controls">
-                    <button class="btn-main" onclick="changeScore('score1', 1)">+</button>
-                    <button class="btn-sub" onclick="changeScore('score1', -1)">-</button>
+            <div class="sidebar-content">
+                <div class="setting-group">
+                    <label>Favicon URL</label>
+                    <input type="text" id="faviconInput" placeholder="Paste image link...">
+                    <button onclick="applyFavicon()" class="btn-sidebar">Update Icon</button>
+                </div>
+                <div class="setting-group">
+                    <label>History</label>
+                    <button onclick="clearHistory()" class="btn-danger">Clear All Matches</button>
                 </div>
             </div>
-            <section class="history-section glass">
-    <h3>MATCH HISTORY</h3>
-    <div id="historyLog" class="history-log">
-        <p class="empty-msg">No matches recorded yet.</p>
-    </div>
-    <button onclick="clearHistory()" class="clear-btn">Clear History</button>
-</section>
+        </aside>
 
-<footer class="actions">
-    <button onclick="saveMatch()" class="btn-save">FINISH & SAVE MATCH</button>
-    <button onclick="resetScores()" class="reset-link">RESET CURRENT</button>
-</footer>
-
-            <div class="card p2-card">
-                <input type="text" value="TEAM 2" class="team-name">
-                <div id="score2" class="score-display">0</div>
-                <div class="controls">
-                    <button class="btn-main" onclick="changeScore('score2', 1)">+</button>
-                    <button class="btn-sub" onclick="changeScore('score2', -1)">-</button>
+        <div class="main-content">
+            <nav class="top-nav">
+                <button onclick="toggleSidebar()" class="menu-btn">☰</button>
+                <div class="logo">COURTLY</div>
+                <div class="nav-actions">
+                    <button onclick="undo()" class="icon-btn">⟲</button>
+                    <button onclick="swapSides()" class="icon-btn">🔄</button>
                 </div>
-            </div>
-        </main>
+            </nav>
 
-        <footer class="actions">
-            <button onclick="resetScores()" class="reset-link">RESET MATCH</button>
-        </footer>
-    </div>
+            <main class="scoreboard-horizontal" id="board">
+                <div class="card" id="card1" onclick="setServer(1)">
+                    <div id="serve1" class="serve-indicator">🎾</div>
+                    <input type="text" value="HOME" class="team-name" onclick="event.stopPropagation()">
+                    <div id="score1" class="score-display">0</div>
+                    <div class="controls">
+                        <button class="btn-main" onclick="event.stopPropagation(); changeScore('score1', 1)">+</button>
+                        <button class="btn-sub" onclick="event.stopPropagation(); changeScore('score1', -1)">-</button>
+                    </div>
+                </div>
 
-    <div id="settingsModal" class="modal hidden">
-        <div class="modal-content glass">
-            <h2>Settings</h2>
-            <div class="input-group">
-                <label>Favicon URL</label>
-                <input type="text" id="faviconInput" placeholder="https://example.com/icon.png">
-            </div>
-            <button id="saveSettings" class="btn-main">Save & Close</button>
+                <div class="card" id="card2" onclick="setServer(2)">
+                    <div id="serve2" class="serve-indicator hidden">🎾</div>
+                    <input type="text" value="AWAY" class="team-name" onclick="event.stopPropagation()">
+                    <div id="score2" class="score-display">0</div>
+                    <div class="controls">
+                        <button class="btn-main" onclick="event.stopPropagation(); changeScore('score2', 1)">+</button>
+                        <button class="btn-sub" onclick="event.stopPropagation(); changeScore('score2', -1)">-</button>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="bottom-actions">
+                <button onclick="saveMatch()" class="finish-btn">FINISH MATCH</button>
+                <div id="historyLog" class="mini-history"></div>
+            </footer>
         </div>
     </div>
 

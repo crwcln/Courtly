@@ -104,20 +104,3 @@ function loadFavicon() {
         document.getElementById('faviconInput').value = savedFavicon;
     }
 }
-function changeScore(id, amount) {
-    saveState();
-    const el = document.getElementById(id);
-    let score = parseInt(el.innerText) + amount;
-    
-    if (score >= 0) {
-        // Add a little "pop" animation
-        el.style.transform = "scale(1.1)";
-        el.style.color = var(--accent);
-        
-        setTimeout(() => {
-            el.innerText = score;
-            el.style.transform = "scale(1)";
-            el.style.color = "white";
-        }, 100);
-    }
-}
