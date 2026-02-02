@@ -1,24 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Courtly</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courtly | Modern Scorekeeper</title>
+    
+    <link id="favicon" rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/806/806131.png">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <h1>Courtly</h1>
-  <p>Smart scoring for the modern court</p>
 
-  <div class="sports">
-    <button onclick="start('pickleball')">Pickleball</button>
-    <button onclick="start('tennis')">Tennis</button>
-    <button onclick="start('volleyball')">Volleyball</button>
-  </div>
+    <div class="app-container">
+        <nav class="top-nav">
+            <div class="logo">
+                <span class="dot"></span>
+                <h1>COURTLY</h1>
+            </div>
+            <button id="settingsBtn" class="icon-btn">⚙️</button>
+        </nav>
 
-  <script>
-    function start(sport) {
-      window.location.href = `app.html?sport=${sport}`;
-    }
-  </script>
+        <main class="scoreboard">
+            <div class="card p1-card">
+                <input type="text" value="TEAM 1" class="team-name">
+                <div id="score1" class="score-display">0</div>
+                <div class="controls">
+                    <button class="btn-main" onclick="changeScore('score1', 1)">+</button>
+                    <button class="btn-sub" onclick="changeScore('score1', -1)">-</button>
+                </div>
+            </div>
+            <section class="history-section glass">
+    <h3>MATCH HISTORY</h3>
+    <div id="historyLog" class="history-log">
+        <p class="empty-msg">No matches recorded yet.</p>
+    </div>
+    <button onclick="clearHistory()" class="clear-btn">Clear History</button>
+</section>
+
+<footer class="actions">
+    <button onclick="saveMatch()" class="btn-save">FINISH & SAVE MATCH</button>
+    <button onclick="resetScores()" class="reset-link">RESET CURRENT</button>
+</footer>
+
+            <div class="card p2-card">
+                <input type="text" value="TEAM 2" class="team-name">
+                <div id="score2" class="score-display">0</div>
+                <div class="controls">
+                    <button class="btn-main" onclick="changeScore('score2', 1)">+</button>
+                    <button class="btn-sub" onclick="changeScore('score2', -1)">-</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="actions">
+            <button onclick="resetScores()" class="reset-link">RESET MATCH</button>
+        </footer>
+    </div>
+
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content glass">
+            <h2>Settings</h2>
+            <div class="input-group">
+                <label>Favicon URL</label>
+                <input type="text" id="faviconInput" placeholder="https://example.com/icon.png">
+            </div>
+            <button id="saveSettings" class="btn-main">Save & Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
