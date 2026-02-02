@@ -8,19 +8,20 @@
 <body>
   <h2 id="sportTitle"></h2>
 
-  <div class="scoreboard">
-    <div class="team">
-      <h3>Team A</h3>
-      <div id="scoreA" class="score">0</div>
-      <button onclick="addPoint('A')">+</button>
-    </div>
+<div class="team">
+  <h3>Team A</h3>
+  <div id="gameScoreA" class="score">0</div>
+  <div id="scoreA" class="score">Love</div>
+  <button onclick="addPoint('A')">+</button>
+</div>
 
-    <div class="team">
-      <h3>Team B</h3>
-      <div id="scoreB" class="score">0</div>
-      <button onclick="addPoint('B')">+</button>
-    </div>
-  </div>
+<div class="team">
+  <h3>Team B</h3>
+  <div id="gameScoreB" class="score">0</div>
+  <div id="scoreB" class="score">Love</div>
+  <button onclick="addPoint('B')">+</button>
+</div>
+
 
   <button onclick="reset()">Reset</button>
 
