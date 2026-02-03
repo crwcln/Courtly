@@ -736,3 +736,77 @@ html, body {
         font-size: 1.2rem; /* Scale down logo slightly */
     }
 }
+/* MOBILE ONLY STYLES (Applies only to screens 768px or smaller) */
+@media (max-width: 768px) {
+    
+    /* 1. Force cards to stack or shrink to fit without scrolling */
+    .score-container {
+        flex-direction: column; /* Stack vertically for portrait phones */
+        height: calc(100vh - 70px); 
+        gap: 8px;
+        padding: 5px;
+    }
+
+    .card {
+        flex: 1;
+        padding: 10px;
+        margin: 0;
+    }
+
+    /* 2. Scale scores for mobile visibility */
+    .score-display {
+        font-size: 20vh; /* Scaled based on height to prevent overflow */
+        margin: 5px 0;
+    }
+
+    /* 3. Improve Button Ergonomics */
+    .button-group {
+        flex-direction: row; /* Keep + and - side-by-side on mobile */
+        width: 100%;
+        gap: 8px;
+    }
+
+    .btn-main, .btn-sub {
+        height: 65px !important; /* Larger hit area for thumbs */
+        flex: 1;
+    }
+
+    /* 4. Hide unnecessary desktop margins */
+    body {
+        overflow: hidden; /* Prevents accidental swiping/scrolling */
+        touch-action: manipulation; /* Removes tap delay */
+    }
+
+    /* 5. Adjust the Header for narrow screens */
+    .top-nav {
+        padding: 5px 10px;
+    }
+    
+    .logo {
+        font-size: 1.1rem;
+    }
+}
+/* LANDSCAPE MOBILE FIX */
+@media (max-height: 500px) and (orientation: landscape) {
+    .score-container {
+        flex-direction: row; /* Switch back to side-by-side in landscape */
+    }
+    .score-display {
+        font-size: 30vh;
+    }
+    .button-group {
+        flex-direction: column; /* Stack buttons to the side of the score */
+    }
+}
+/* Applies to all, but vital for mobile */
+button {
+    -webkit-tap-highlight-color: transparent; /* Removes the blue box on tap */
+    outline: none;
+}
+
+#score1, #score2 {
+    /* "Locks" the font rendering on mobile processors */
+    -webkit-font-smoothing: antialiased;
+    transform: translateZ(0); 
+    will-change: transform;
+}
