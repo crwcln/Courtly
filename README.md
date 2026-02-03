@@ -1,4 +1,4 @@
-# Courtly
+# Courtly 🥒
 The high-contrast Pickleball scoreboard designed for maximum visibility on the court.
 
 Courtly is a lightweight web application built for pickleball players who need a clear, fast, and intuitive way to track scores and serving positions under bright sunlight.
