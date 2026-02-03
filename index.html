@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Courtly | Scorekeeper</title>
     
     <link id="favicon" rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/806/806131.png">
@@ -82,17 +82,18 @@
 
         <div class="main-content">
             <nav class="top-nav">
-                <button onclick="toggleSidebar()" class="menu-btn">☰ MENU</button>
-                <div class="logo">COURTLY</div>
-                <div class="nav-actions">
-                    <button onclick="undo()" class="icon-btn">⟲</button>
-                    <button onclick="swapSides()" class="icon-btn">🔄</button>
-                </div>
-            </nav>
+    <button onclick="toggleSidebar()" class="menu-btn">☰</button>
+    <div class="logo">COURTLY</div>
+    <div class="nav-actions">
+        <button onclick="undo()" class="icon-btn">⟲</button>
+        <button onclick="swapSides()" class="icon-btn">🔄</button>
+        <button onclick="saveMatch()" class="finish-btn-nav">FINISH</button>
+    </div>
+</nav>
 
             <main class="scoreboard-horizontal" id="board">
                 <div class="card" id="card1" onclick="setServer(1)">
-                    <div id="serve1" class="serve-indicator">🎾</div>
+                    <div id="serve1" class="serve-indicator">🥒</div>
                     <input type="text" value="HOME" class="team-name" onclick="event.stopPropagation()">
                     <div id="score1" class="score-display">0</div>
                     <div class="controls">
@@ -119,5 +120,30 @@
     </div>
 
     <script src="script.js"></script>
+<div id="devPanel" class="dev-panel-container glass hidden">
+    <div id="devHeader" class="dev-handle">
+        <div class="dots">:::</div>
+    </div>
+    
+    <div class="dev-content">
+        <div onclick="closeDevPanel()" class="close-x">×</div>
+        <h2 class="dev-title">DEV COMMANDS</h2>
+        
+        <div id="devAuth">
+            <input type="password" id="devPass" placeholder="Password" class="num-input">
+            <button onclick="authDev()" class="btn-sidebar" style="margin-top:10px">Unlock</button>
+        </div>
+
+        <div id="devControls" class="hidden">
+            <div class="dev-grid">
+                <button onclick="testNotify()" class="dev-btn">Test Notification</button>
+                <button onclick="showDecisionModal()" class="dev-btn">Test Win-by-2</button>
+                <button onclick="setScore(10, 10)" class="dev-btn">Set 10-10</button>
+                <button onclick="location.reload()" class="dev-btn">Reload App</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dev-launcher" onclick="openDevPanel()" style="display: block !important; visibility: visible !important;">⚡</div>
 </body>
 </html>
