@@ -278,135 +278,6 @@ select.num-input option {
     font-size: 1.5rem;
     cursor: pointer;
 }
-.dev-launcher {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    color: #333;
-    cursor: pointer;
-    font-size: 12px;
-    z-index: 999;
-}
-
-.dev-box {
-    border: 1px solid #ff00ff !important; /* Magenta for Dev Mode */
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.2) !important;
-}
-
-.dev-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.dev-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid var(--border);
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 0.7rem;
-    cursor: pointer;
-}
-
-.dev-btn:hover { background: #ff00ff; color: black; }
-.dev-panel-container {
-    position: fixed;
-    top: 50px;
-    left: 50px; /* Starting position */
-    width: 240px;
-    background: #111;
-    border: 1px solid #ff00ff;
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
-    border-radius: 12px;
-    z-index: 3000;
-    user-select: none; /* Prevents text selection while dragging */
-}
-
-.dev-handle {
-    width: 100%;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: grab;
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.dev-handle:active { cursor: grabbing; }
-
-.dots {
-    color: #444;
-    font-size: 20px;
-    letter-spacing: 2px;
-}
-
-.dev-content { padding: 15px; text-align: right; }
-.dev-title { font-size: 0.8rem; color: #ff00ff; margin-top: 0; }
-/* Sidebar Fix: Fully hidden */
-.sidebar {
-    left: -320px; 
-}
-
-/* Main Scroll Fix */
-body, html {
-    overflow-y: auto !important; /* Forces scrollability */
-    overflow-x: hidden;
-}
-
-/* New Finish Button Style */
-.finish-btn-nav {
-    background: var(--accent);
-    color: black;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 900;
-    font-size: 0.75rem;
-    cursor: pointer;
-    margin-left: 10px;
-    transition: transform 0.2s;
-}
-
-.finish-btn-nav:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(204, 255, 0, 0.3);
-}
-
-/* Adjust Nav Actions for alignment */
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-/* Remove the old bottom footer styling if it exists */
-.bottom-actions {
-    display: none;
-}
-/* Disable selection and zooming on tap for the whole app */
-body {
-    -webkit-user-select: none;  /* Safari */
-    -ms-user-select: none;      /* IE 10 and 11 */
-    user-select: none;          /* Standard syntax */
-    
-    /* Disables double-tap to zoom, but keeps pinch-to-zoom if needed */
-    touch-action: manipulation; 
-}
-
-/* Re-enable selection ONLY for inputs so you can still type and edit names */
-input, textarea {
-    -webkit-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
-
-/* Ensure buttons don't show the gray highlight "tap" box on mobile Safari */
-button, .card, .dev-launcher {
-    -webkit-tap-highlight-color: transparent;
-}
 .card {
     display: flex;
     flex-direction: column;
@@ -568,4 +439,13 @@ button:active {
 
 #vibrateToggle:checked::before {
     left: 22px;
+}
+.top-nav, .card, button {
+    position: relative; /* Allows z-index to work */
+    z-index: 10;        /* Pulls them to the front */
+    pointer-events: auto !important; /* Forces them to accept clicks */
+}
+
+.app-wrapper, .main-content {
+    z-index: 1; /* Keeps the background containers in the back */
 }

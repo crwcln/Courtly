@@ -126,30 +126,5 @@
     </div>
 
     <script src="script.js"></script>
-<div id="devPanel" class="dev-panel-container glass hidden">
-    <div id="devHeader" class="dev-handle">
-        <div class="dots">:::</div>
-    </div>
-    
-    <div class="dev-content">
-        <div onclick="closeDevPanel()" class="close-x">×</div>
-        <h2 class="dev-title">DEV COMMANDS</h2>
-        
-        <div id="devAuth">
-            <input type="password" id="devPass" placeholder="Password" class="num-input">
-            <button onclick="authDev()" class="btn-sidebar" style="margin-top:10px">Unlock</button>
-        </div>
-
-        <div id="devControls" class="hidden">
-            <div class="dev-grid">
-                <button onclick="testNotify()" class="dev-btn">Test Notification</button>
-                <button onclick="showDecisionModal()" class="dev-btn">Test Win-by-2</button>
-                <button onclick="setScore(10, 10)" class="dev-btn">Set 10-10</button>
-                <button onclick="location.reload()" class="dev-btn">Reload App</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="dev-launcher" onclick="openDevPanel()" style="display: block !important; visibility: visible !important;">⚡</div>
 </body>
 </html>

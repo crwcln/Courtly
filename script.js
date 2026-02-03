@@ -150,69 +150,6 @@ function resetScores() {
     document.getElementById('score1').innerText = "0";
     document.getElementById('score2').innerText = "0";
 }
-const DEV_PASSWORD = "courtly123";
-
-function openDevPanel() {
-    document.getElementById('devPanel').classList.remove('hidden');
-}
-
-function closeDevPanel() {
-    document.getElementById('devPanel').classList.add('hidden');
-    // Relock on close
-    document.getElementById('devAuth').classList.remove('hidden');
-    document.getElementById('devControls').classList.add('hidden');
-    document.getElementById('devPass').value = "";
-}
-
-function authDev() {
-    const pass = document.getElementById('devPass').value;
-    if (pass === DEV_PASSWORD) {
-        document.getElementById('devAuth').classList.add('hidden');
-        document.getElementById('devControls').classList.remove('hidden');
-    } else {
-        alert("Access Denied");
-    }
-}
-
-// Dev Event Triggers
-function testNotify() {
-    showAlert("Dev System", "This is a test notification sliding from the right!");
-}
-
-function setScore(s1, s2) {
-    document.getElementById('score1').innerText = s1;
-    document.getElementById('score2').innerText = s2;
-    checkLogic(); // Triggers match point/win-by-2 logic
-}
-const devPanel = document.getElementById("devPanel");
-const devHeader = document.getElementById("devHeader");
-
-let isDragging = false;
-let offset = { x: 0, y: 0 };
-
-devHeader.onmousedown = (e) => {
-    isDragging = true;
-    // Calculate the distance between the mouse and the top-left of the panel
-    offset.x = e.clientX - devPanel.getBoundingClientRect().left;
-    offset.y = e.clientY - devPanel.getBoundingClientRect().top;
-    devHeader.style.cursor = "grabbing";
-};
-
-document.onmousemove = (e) => {
-    if (!isDragging) return;
-    
-    // Position the panel based on mouse position minus the initial offset
-    let x = e.clientX - offset.x;
-    let y = e.clientY - offset.y;
-    
-    devPanel.style.left = x + "px";
-    devPanel.style.top = y + "px";
-};
-
-document.onmouseup = () => {
-    isDragging = false;
-    devHeader.style.cursor = "grab";
-};
 function triggerVibration() {
     const isVibrateEnabled = document.getElementById('vibrateToggle').checked;
     
