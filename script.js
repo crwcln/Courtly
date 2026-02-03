@@ -232,3 +232,25 @@ function changeScore(scoreId, amount) {
     // Check logic for wins/alerts
     checkLogic();
 }
+// Close dropdowns when clicking outside
+window.onclick = function(event) {
+    if (!event.target.closest('.custom-select')) {
+        const dropdowns = document.getElementsByClassName("select-options");
+        for (let i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].classList.add('hidden');
+        }
+    }
+}
+
+// Enhance the toggle function to rotate the arrow
+function toggleDropdown(id) {
+    const el = document.getElementById(id);
+    const isOpening = el.classList.contains('hidden');
+    
+    // Close all other dropdowns first
+    document.querySelectorAll('.select-options').forEach(opt => opt.classList.add('hidden'));
+    
+    if (isOpening) {
+        el.classList.remove('hidden');
+    }
+}

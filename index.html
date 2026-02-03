@@ -49,9 +49,9 @@
                     <label>Game Mode</label>
                     <div class="custom-select" id="modeSelect">
                         <div class="select-trigger" onclick="toggleDropdown('modeOptions')">
-                            <span id="selectedMode">Pickleball</span>
-                            <span class="arrow">▾</span>
-                        </div>
+    <span id="selectedMode">Pickleball</span>
+    <span class="arrow-icon">▾</span>
+</div>
                         <div class="select-options hidden" id="modeOptions">
                             <div onclick="selectMode('pickleball', 'Pickleball')">Pickleball</div>
                             <div onclick="selectMode('tennis', 'Tennis')">Tennis</div>
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="card" id="card2" onclick="setServer(2)">
-                    <div id="serve2" class="serve-indicator hidden">🎾</div>
+                    <div id="serve2" class="serve-indicator hidden">🥒</div>
                     <input type="text" value="AWAY" class="team-name" onclick="event.stopPropagation()">
                     <div id="score2" class="score-display">0</div>
                     <div class="controls">
