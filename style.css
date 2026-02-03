@@ -705,3 +705,34 @@ button:active {
     max-width: 400px;
     z-index: 10000;
 }
+/* Prevent text selection when tapping buttons (avoids blue highlights) */
+* {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+/* Ensure the app takes up the full screen without scrolling */
+html, body {
+    height: 100%;
+    overflow: hidden; /* Stops "bounce" scrolling on iOS */
+    position: fixed;
+    width: 100%;
+}
+
+/* Larger Touch Targets for Score Buttons */
+.btn-main, .btn-sub {
+    min-height: 80px; /* Bigger for thumb reach */
+    font-size: 40px;
+    touch-action: manipulation; /* Removes 300ms tap delay */
+}
+
+/* Adjust Sidebar width for narrow screens */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 85%; /* Almost full screen on mobile */
+    }
+    
+    .logo {
+        font-size: 1.2rem; /* Scale down logo slightly */
+    }
+}
