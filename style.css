@@ -19,6 +19,33 @@ body, html {
     color: #ffffff;
     line-height: 1.5;
 }
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjust spacing between buttons */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+/* Targeting the plus button */
+.btn-main, .plus-button-class { 
+    color: #000000 !important;
+    font-weight: 800;
+}
+
+/* Targeting the minus button */
+.btn-sub, .minus-button-class {
+    color: #ffffff !important;
+    font-weight: 800;
+}
+/* Ensure the buttons themselves don't stack */
+.header-controls button {
+    background: none;
+    border: none;
+    color: white; /* All text white as requested */
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    cursor: pointer;
+}
 input, button, select, textarea {
     font-family: inherit;
 }
