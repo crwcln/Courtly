@@ -51,7 +51,10 @@ body, html {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    flex: 1;
+    flex: 1; 
+    justify-content: center;
+    width: 100%;
+    align-items: center;
 }
 
 /* Cards */
@@ -416,4 +419,79 @@ button, .card, .dev-launcher {
     line-height: 1;          /* Removes extra spacing above/below numbers */
     margin: 0;               /* Reset margins for tighter control */
     pointer-events: none;    /* Prevents the numbers themselves from being 'tapped' */
+}
+/* MOBILE FRIENDLY OVERRIDE */
+@media (max-width: 768px) {
+    /* Stack cards vertically instead of horizontally */
+    .scoreboard-horizontal {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .card {
+        flex: 1; /* Allow cards to share vertical space */
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: auto; /* Remove fixed shape on mobile */
+        padding: 15px;
+    }
+
+    /* Make the score big but readable on a phone */
+    .score-display {
+        font-size: 25vh; /* Scale based on screen height */
+        margin: 5px 0;
+    }
+
+    /* Make buttons larger for "Fat Finger" accessibility */
+    .btn-main {
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    /* Hide sidebar by default with a wider offset */
+    .sidebar {
+        width: 85%; /* Take up most of the screen on mobile */
+        left: -90%; 
+    }
+}
+.switch-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+/* The actual toggle design */
+#vibrateToggle {
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    background: #333;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#vibrateToggle:checked {
+    background: var(--accent);
+}
+
+#vibrateToggle::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+}
+
+#vibrateToggle:checked::before {
+    left: 22px;
 }

@@ -2,6 +2,12 @@ let historyStack = [];
 let targetScore = 11;
 let currentMode = 'pickleball';
 const tennisPoints = ["0", "15", "30", "40", "AD"];
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+if (isMobile) {
+    console.log("Mobile optimization active");
+    // You could trigger haptic feedback here later
+}
 
 // --- UI CONTROLS ---
 function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
@@ -207,3 +213,22 @@ document.onmouseup = () => {
     isDragging = false;
     devHeader.style.cursor = "grab";
 };
+function triggerVibration() {
+    const isVibrateEnabled = document.getElementById('vibrateToggle').checked;
+    
+    // Check if the browser supports vibration and if user enabled it
+    if ("vibrate" in navigator && isVibrateEnabled) {
+        navigator.vibrate(50); // A short 50ms pulse
+    }
+}
+
+// Update your existing score function to include the vibration
+function changeScore(scoreId, amount) {
+    // ... your existing score logic ...
+    
+    // Trigger the buzz
+    triggerVibration();
+    
+    // Check logic for wins/alerts
+    checkLogic();
+}
