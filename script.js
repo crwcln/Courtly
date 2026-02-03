@@ -1,5 +1,5 @@
 window.onload = function() {
-    const appVersion = "1.0.5"; // PICK VERSION
+    const appVersion = "1.0.6"; // PICK VERSION
     const versionDisplay = document.getElementById('version-tag');
     if (versionDisplay) {
         versionDisplay.innerText = "Build: " + appVersion;
@@ -15,7 +15,16 @@ window.onload = function() {
         "Checking the Net Height...",
         "Finding a Fourth Player...",
         "Hydrating for the Match...",
-        "Dinking in Progress..."
+        "Dinking in Progress...",
+        "Finding the kitchen...",
+        "Checking NVZ violations...",
+        "Dinks loading...",
+        "Adjusting paddle grip...",
+        "Warming up the dinks...",
+        "Serving underhand (obviously)...", 
+        "Calibrating soft game...",
+        "Locating third shot drop...",
+        "Avoiding the kitchen (mostly)...",
     ];
 
     // Pick a random one
@@ -74,18 +83,22 @@ function setTargetScore(val) {
 }
 
 // --- SCORING LOGIC ---
-function changeScore(id, amount) {
-    saveState();
-    const el = document.getElementById(id);
-    if (currentMode === 'tennis') {
-        handleTennisScore(el, amount);
-    } else {
-        let val = parseInt(el.innerText) + amount;
-        if (val >= 0) el.innerText = val;
-    }
-    checkLogic();
-}
+function changeScore(teamId, amount) {
+    // 1. SAVE the current state BEFORE changing anything
+    historyStack.push({
+        s1: document.getElementById('score1').innerText,
+        s2: document.getElementById('score2').innerText,
+        v1: document.getElementById('serve1').classList.contains('hidden'),
+        v2: document.getElementById('serve2').classList.contains('hidden')
+    });
 
+    // 2. NOW change the score
+    let scoreElem = document.getElementById(teamId);
+    let current = parseInt(scoreElem.innerText);
+    if (current + amount >= 0) {
+        scoreElem.innerText = current + amount;
+    }
+}
 function handleTennisScore(el, amount) {
     let index = tennisPoints.indexOf(el.innerText);
     if (amount > 0) {
@@ -236,3 +249,14 @@ function toggleDropdown(id) {
         el.classList.remove('hidden');
     }
 }
+document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+        const panel = document.getElementById('sidebar'); // Double check this ID!
+        const overlay = document.getElementById('overlay');
+        
+        // The Fix: Check if panel exists first
+        if (panel && !panel.classList.contains('hidden')) {
+            toggleSettings();
+        }
+    }
+});

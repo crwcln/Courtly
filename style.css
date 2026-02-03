@@ -327,16 +327,19 @@ select.num-input option {
     font-size: 1.5rem;
     cursor: pointer;
 }
-
-.btn-cancel {
-    background: #ff4444;
-    color: white;
-    border: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    font-size: 1.5rem;
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4); /* Dims the background slightly */
+    z-index: 999; /* Just below the settings panel */
     cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
 }
 .card {
     display: flex;

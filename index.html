@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Courtly | Scorekeeper</title>
+    <title>Courtly | The New Scorekeeper</title>
     
     <link id="favicon" rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/806/806131.png">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="overlay" onclick="toggleSettings()" class="hidden"></div>
 <div id="loader">
         <div class="mini-court">
             <div class="kitchen-left"></div>
@@ -28,7 +29,6 @@
             <p id="decisionMessage">Score is tied near the end. Enforce Win by 2?</p>
             <div class="decision-actions">
                 <button onclick="applyWinByTwo(true)" class="btn-check">✓</button>
-                <button onclick="applyWinByTwo(false)" class="btn-cancel">✕</button>
             </div>
         </div>
     </div>
@@ -87,11 +87,6 @@
                     <input type="number" id="customScoreInput" class="num-input hidden" placeholder="Enter score..." onchange="setTargetScore(this.value)">
                 </div>
 
-                <div class="setting-group">
-                    <label>Favicon URL</label>
-                    <input type="text" id="faviconInput" class="num-input" placeholder="Paste link...">
-                    <button onclick="applyFavicon()" class="btn-sidebar">Update Icon</button>
-                </div>
 
                 <button onclick="clearHistory()" class="btn-danger">Clear History</button>
             </div>
