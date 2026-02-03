@@ -4,10 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Courtly | Scorekeeper</title>
+    
     <link id="favicon" rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/806/806131.png">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id="decisionModal" class="modal-overlay hidden">
+        <div class="modal-box glass">
+            <h2 id="decisionTitle">Potential Win!</h2>
+            <p id="decisionMessage">Score is tied near the end. Enforce Win by 2?</p>
+            <div class="decision-actions">
+                <button onclick="applyWinByTwo(true)" class="btn-check">✓</button>
+                <button onclick="applyWinByTwo(false)" class="btn-cancel">✕</button>
+            </div>
+        </div>
+    </div>
+
+<div id="customAlert" class="modal-overlay hidden">
+    <div class="modal-box glass">
+        <div onclick="closeAlert()" class="close-x">×</div>
+        
+        <h2 id="alertTitle">ALERT</h2>
+        <p id="alertMessage">Message goes here.</p>
+    </div>
+</div>
 
     <div class="app-wrapper">
         <aside id="sidebar" class="sidebar">
@@ -15,22 +37,52 @@
                 <h2>SETTINGS</h2>
                 <button onclick="toggleSidebar()" class="close-sidebar">×</button>
             </div>
+            
             <div class="sidebar-content">
                 <div class="setting-group">
+                    <label>Game Mode</label>
+                    <div class="custom-select" id="modeSelect">
+                        <div class="select-trigger" onclick="toggleDropdown('modeOptions')">
+                            <span id="selectedMode">Pickleball</span>
+                            <span class="arrow">▾</span>
+                        </div>
+                        <div class="select-options hidden" id="modeOptions">
+                            <div onclick="selectMode('pickleball', 'Pickleball')">Pickleball</div>
+                            <div onclick="selectMode('tennis', 'Tennis')">Tennis</div>
+                            <div onclick="selectMode('classic', 'Classic')">Classic</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-group" id="targetScoreGroup">
+                    <label>Target Score</label>
+                    <div class="custom-select">
+                        <div class="select-trigger" onclick="toggleDropdown('scoreOptions')">
+                            <span id="selectedScore">11</span>
+                            <span class="arrow">▾</span>
+                        </div>
+                        <div class="select-options hidden" id="scoreOptions">
+                            <div onclick="setTargetScore(9)">9</div>
+                            <div onclick="setTargetScore(11)">11</div>
+                            <div onclick="showCustomScoreInput()">Custom</div>
+                        </div>
+                    </div>
+                    <input type="number" id="customScoreInput" class="num-input hidden" placeholder="Enter score..." onchange="setTargetScore(this.value)">
+                </div>
+
+                <div class="setting-group">
                     <label>Favicon URL</label>
-                    <input type="text" id="faviconInput" placeholder="Paste image link...">
+                    <input type="text" id="faviconInput" class="num-input" placeholder="Paste link...">
                     <button onclick="applyFavicon()" class="btn-sidebar">Update Icon</button>
                 </div>
-                <div class="setting-group">
-                    <label>History</label>
-                    <button onclick="clearHistory()" class="btn-danger">Clear All Matches</button>
-                </div>
+
+                <button onclick="clearHistory()" class="btn-danger">Clear History</button>
             </div>
         </aside>
 
         <div class="main-content">
             <nav class="top-nav">
-                <button onclick="toggleSidebar()" class="menu-btn">☰</button>
+                <button onclick="toggleSidebar()" class="menu-btn">☰ MENU</button>
                 <div class="logo">COURTLY</div>
                 <div class="nav-actions">
                     <button onclick="undo()" class="icon-btn">⟲</button>
@@ -62,7 +114,6 @@
 
             <footer class="bottom-actions">
                 <button onclick="saveMatch()" class="finish-btn">FINISH MATCH</button>
-                <div id="historyLog" class="mini-history"></div>
             </footer>
         </div>
     </div>

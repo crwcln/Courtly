@@ -108,3 +108,170 @@ body, html {
     margin: 0 auto;
     display: block;
 }
+/* Ensure the overlay covers the screen but anchors content to bottom-right */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6); 
+    display: flex !important; /* Forces flex logic */
+    justify-content: flex-end; /* Horizontal Right */
+    align-items: flex-end;    /* Vertical Bottom */
+    padding: 30px;            
+    z-index: 2000;
+    pointer-events: none;     /* Allows clicking 'through' the dark area */
+}
+
+/* The Box itself */
+.modal-box {
+    pointer-events: auto;     /* Re-enables clicking inside the alert */
+    width: 260px;
+    padding: 20px;
+    background: #111;
+    border-radius: 15px;
+    text-align: right;
+    position: relative;
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 20px rgba(204, 255, 0, 0.2);
+
+    /* FIX: Force slide-in from right */
+    transform: translateX(0); 
+    animation: slideInRight 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%); /* Starts completely off-screen to the right */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);    /* Slides into view */
+    }
+}
+
+/* The Close X */
+.close-x {
+    position: absolute;
+    top: 10px;
+    left: 15px; /* Opposite of right-justified text */
+    color: #666;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+}
+/* Match Point Glow Animation */
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 10px rgba(204, 255, 0, 0.2); }
+    50% { box-shadow: 0 0 30px rgba(204, 255, 0, 0.6); border-color: var(--accent); }
+    100% { box-shadow: 0 0 10px rgba(204, 255, 0, 0.2); }
+}
+
+.match-point-card {
+    animation: pulse-glow 1.5s infinite;
+}
+
+/* Helper Class */
+.hidden { display: none !important; }
+
+.num-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+    font-family: inherit;
+}
+
+select.num-input option {
+    background: #111;
+    color: white;
+}
+
+.setting-group {
+    margin-bottom: 20px;
+}
+
+.setting-group label {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+/* Custom Dropdown Styling */
+.custom-select {
+    position: relative;
+    user-select: none;
+    margin-top: 8px;
+}
+
+.select-trigger {
+    background: rgba(255, 255, 255, 0.07);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-trigger:hover { background: rgba(255, 255, 255, 0.12); }
+
+.select-options {
+    position: absolute;
+    top: calc(100% + 5px);
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 50;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: slideDown 0.2s ease forwards;
+}
+
+.select-options div {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.select-options div:hover { background: var(--accent); color: black; }
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Decision Buttons */
+.decision-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-check {
+    background: var(--accent);
+    color: black;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background: #ff4444;
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
