@@ -99,12 +99,16 @@
 
         <div class="main-content">
             <nav class="top-nav">
-    <button onclick="toggleSidebar()" class="menu-btn">☰</button>
+    <div class="nav-left">
+        <button onclick="toggleSidebar()" class="menu-btn">☰</button>
+    </div>
+
     <div class="logo">COURTLY</div>
+
     <div class="nav-actions">
-        <button class="undo-btn">⟲</button>
-        <button class="switch-btn">⇄</button>
-        <button class="finish-btn">FINISH</button>
+        <button class="undo-btn" onclick="undo()">⟲</button>
+        <button class="switch-btn" onclick="swapSides()">⇄</button>
+        <button class="finish-btn" onclick="resetScores()">FINISH</button>
     </div>
 </nav>
 

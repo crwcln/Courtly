@@ -27,6 +27,32 @@ body, html {
     top: 20px;
     right: 20px;
 }
+.nav-actions {
+    display: flex;          /* The magic wand for horizontal layout */
+    flex-direction: row;    /* Explicitly set to row */
+    align-items: center;    /* Keeps them centered vertically */
+    gap: 20px;              /* Space between the buttons */
+    
+    /* Position them in the top right corner */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.nav-actions button {
+    background: none;
+    border: none;
+    color: white;           /* All text white */
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Specific request: Plus/Minus text black */
+.btn-main, .btn-sub {
+    color: #000000 !important;
+}
 /* Targeting the plus button */
 .btn-main, .plus-button-class { 
     color: #000000 !important;
