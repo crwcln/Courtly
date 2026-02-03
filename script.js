@@ -1,5 +1,5 @@
 window.onload = function() {
-    const appVersion = "1.0.4"; // PICK VERSION
+    const appVersion = "1.0.5"; // PICK VERSION
     const versionDisplay = document.getElementById('version-tag');
     if (versionDisplay) {
         versionDisplay.innerText = "Build: " + appVersion;

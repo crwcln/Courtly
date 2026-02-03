@@ -10,11 +10,18 @@ body, html {
     padding: 0;
     background: var(--bg);
     color: white;
-    font-family: -apple-system, sans-serif;
-    height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;    height: 100vh;
+    /* SF Pro looks best with these rendering tweaks */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     overflow: hidden;
+    color: #ffffff;
+    line-height: 1.5;
 }
-
+input, button, select, textarea {
+    font-family: inherit;
+}
 /* Sidebar Logic */
 .sidebar {
     position: fixed;
@@ -73,7 +80,7 @@ body, html {
 
 .score-display {
     font-size: clamp(5rem, 15vw, 12rem);
-    font-weight: 900;
+    font-weight: 850;
     margin: 10px 0;
 }
 
@@ -383,17 +390,31 @@ button:active {
 }
 
 /* Finish Button - High Priority */
+.finish-btn {
+    font-weight: 700; /* Makes it stand out */
+    padding: 12px 20px;
+}
 .finish-btn-nav {
-    background: linear-gradient(135deg, var(--accent), #b8e600);
-    color: black !important;
-    border-radius: 6px;
+    /* Font inherited from body (SF Pro) */
+    font-weight: 500;
+    font-size: 15px;
+    
+    /* The iOS "Destructive" look */
+    color: #ff453a; /* iOS System Red */
+    background: rgba(255, 69, 58, 0.1); /* Very faint red background */
+    
+    /* Clean Shape */
+    border: none;
     padding: 6px 14px;
-    box-shadow: 0 4px 0 #8bad00; /* 3D effect */
+    border-radius: 8px; /* Classic iOS corner radius */
+    
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .finish-btn-nav:active {
-    box-shadow: 0 0 0 transparent;
-    transform: translateY(3px);
+    background: rgba(255, 69, 58, 0.2);
+    transform: scale(0.96); /* Subtle "press" effect */
 }
     /* Hide sidebar by default with a wider offset */
     .sidebar {
@@ -567,4 +588,64 @@ button:active {
     color: #ffffff;
     text-align: center;
     margin-top: 20px;
+}
+/* BASE STYLE FOR ALL TOOL BUTTONS */
+button {
+    font-family: inherit; /* Uses SF Pro from the body */
+    background: none;
+    border: none;
+    color: #ffffff; /* iOS System Blue */
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+/* THE "PRESS" EFFECT */
+button:active {
+    opacity: 0.5; /* iOS standard feedback */
+    transform: scale(0.95);
+}
+
+/* DESTRUCTIVE BUTTONS (Reset / Clear History) */
+.clear-history-btn, .finish-btn {
+    color: #ff453a; /* iOS System Red */
+}
+
+/* THE "X" (CLOSE) BUTTON */
+.close-settings-btn {
+    background: rgba(255, 255, 255, 0.1);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 300; /* Thin 'X' looks more modern */
+}
+#settings-panel {
+    /* The Glass Effect */
+    background: rgba(28, 28, 30, 0.7); /* Deep dark with transparency */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%); /* Safari support */
+    
+    /* Layout & Border */
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    
+    /* Shadow for depth */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    
+    /* Center it on screen */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    z-index: 10000;
 }
