@@ -1,3 +1,41 @@
+window.onload = function() {
+    const appVersion = "1.0.4"; // PICK VERSION
+    const versionDisplay = document.getElementById('version-tag');
+    if (versionDisplay) {
+        versionDisplay.innerText = "Build: " + appVersion;
+    }
+    const loader = document.getElementById('loader');
+    const loaderText = loader.querySelector('p'); // Finds the <p> inside the loader
+
+    // Your list of random phrases
+    const phrases = [
+        "Preparing the Court...",
+        "Inflating the Pickleball...",
+        "Cleaning the Kitchen...",
+        "Checking the Net Height...",
+        "Finding a Fourth Player...",
+        "Hydrating for the Match...",
+        "Dinking in Progress..."
+    ];
+
+    // Pick a random one
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    
+    // Set the text
+    if (loaderText) {
+        loaderText.innerText = randomPhrase;
+    }
+
+    // Existing fade-out logic
+    if (loader) {
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }, 5000); // Set this to your preferred loading time
+    }
+};
 let historyStack = [];
 let targetScore = 11;
 let currentMode = 'pickleball';
@@ -161,6 +199,14 @@ function triggerVibration() {
 
 // Update your existing score function to include the vibration
 function changeScore(scoreId, amount) {
+    const scoreElement = document.getElementById(scoreId);
+    let currentScore = parseInt(scoreElement.innerText);
+    
+    // Prevent negative scores
+    if (currentScore + amount >= 0) {
+        scoreElement.innerText = currentScore + amount;
+    }
+}
     // ... your existing score logic ...
     
     // Trigger the buzz
@@ -168,7 +214,6 @@ function changeScore(scoreId, amount) {
     
     // Check logic for wins/alerts
     checkLogic();
-}
 // Close dropdowns when clicking outside
 window.onclick = function(event) {
     if (!event.target.closest('.custom-select')) {

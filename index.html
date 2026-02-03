@@ -10,7 +10,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div id="loader">
+        <div class="mini-court">
+            <div class="kitchen-left"></div>
+            <div class="net"></div>
+            <div class="kitchen-right"></div>
+            <div class="pickleball"></div>
+        </div>
+        
+        <p id="loading-text">Preparing the Court...</p>
+        
+        <div id="version-tag"></div>
+    </div>
     <div id="decisionModal" class="modal-overlay hidden">
         <div class="modal-box glass">
             <h2 id="decisionTitle">Potential Win!</h2>
@@ -103,8 +114,8 @@
                     <input type="text" value="HOME" class="team-name" onclick="event.stopPropagation()">
                     <div id="score1" class="score-display">0</div>
                     <div class="controls">
-                        <button class="btn-main" onclick="event.stopPropagation(); changeScore('score1', 1)">+</button>
-                        <button class="btn-sub" onclick="event.stopPropagation(); changeScore('score1', -1)">-</button>
+                        <button class="btn-main" onclick="changeScore('score1', 1)">+</button>
+                        <button class="btn-sub" onclick="changeScore('score1', -1)">-</button>
                     </div>
                 </div>
 
@@ -113,18 +124,14 @@
                     <input type="text" value="AWAY" class="team-name" onclick="event.stopPropagation()">
                     <div id="score2" class="score-display">0</div>
                     <div class="controls">
-                        <button class="btn-main" onclick="event.stopPropagation(); changeScore('score2', 1)">+</button>
-                        <button class="btn-sub" onclick="event.stopPropagation(); changeScore('score2', -1)">-</button>
+                        <button class="btn-main" onclick="changeScore('score2', 1)">+</button>
+                        <button class="btn-sub" onclick="changeScore('score2', -1)">-</button>
                     </div>
                 </div>
             </main>
-
-            <footer class="bottom-actions">
-                <button onclick="saveMatch()" class="finish-btn">FINISH MATCH</button>
-            </footer>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=300"></script>
 </body>
 </html>

@@ -449,3 +449,122 @@ button:active {
 .app-wrapper, .main-content {
     z-index: 1; /* Keeps the background containers in the back */
 }
+/* 1. LOADER OVERLAY */
+#loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #050505;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Stays on top of everything */
+    transition: opacity 0.5s ease;
+}
+
+/* THE MINI COURT */
+.mini-court {
+    width: 160px; /* Slightly wider to fit the kitchen */
+    height: 80px;
+    border: 3px solid white;
+    position: relative;
+    background: #2e7d32; /* Deep Pickleball Green */
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* NET & KITCHEN LINES */
+.net {
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: white;
+    z-index: 2;
+}
+
+.kitchen-left, .kitchen-right {
+    position: absolute;
+    top: 0;
+    width: 30px; /* The Kitchen depth */
+    height: 100%;
+    border-right: 2px solid white;
+    background: rgba(255, 255, 255, 0.1); /* Subtle highlight for kitchen area */
+}
+
+.kitchen-left { left: 0; width: 50px; border-right: 2px solid white; } /* Adjusting to meet middle */
+.kitchen-right { right: 0; width: 50px; border-left: 2px solid white; }
+
+/* Overwriting the kitchen to be accurate: 7ft from net */
+/* In our scale, let's put them 20px from the center net */
+.kitchen-left {
+    left: 50%;
+    margin-left: -35px;
+    width: 1px;
+    height: 100%;
+    background: white;
+}
+
+.kitchen-right {
+    left: 50%;
+    margin-left: 35px;
+    width: 1px;
+    height: 100%;
+    background: white;
+}
+
+/* THE BALL ANIMATION */
+.pickleball {
+    width: 14px;
+    height: 14px;
+    background: #ccff00;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    z-index: 3;
+    animation: proBounce 1.8s infinite linear;
+    box-shadow: 0 0 10px rgba(204, 255, 0, 0.8);
+}
+
+@keyframes proBounce {
+    /* 0% to 70%: THE ACTIVE BOUNCE */
+    0% { left: 5%; top: 80%; transform: scale(1.2, 0.8); } /* Hit Left (Squish) */
+    15% { top: 20%; transform: scale(1, 1); }             /* Peak Left */
+    35% { left: 85%; top: 80%; transform: scale(1.2, 0.8); } /* Hit Right (Squish) */
+    50% { top: 20%; transform: scale(1, 1); }             /* Peak Right */
+    70% { left: 5%; top: 80%; transform: scale(1.2, 0.8); }  /* Back to Start Hit */
+
+    /* 70% to 100%: THE WAIT */
+    70.1%, 100% { 
+        left: 5%; 
+        top: 80%; 
+        transform: scale(1, 1); /* Sits still and round */
+    }
+}
+
+.pickleball {
+    /* Increase the duration slightly so the wait feels natural */
+    animation: proBounce 2.0s infinite ease-in-out; 
+}
+#version-tag {
+    position: absolute;
+    bottom: 20px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.3); /* Very faint white */
+    font-family: monospace;
+    text-transform: uppercase;
+}
+#loading-text {
+    /* This targets Apple's system font first, then similar clean fonts */
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600; /* Semi-bold looks best for SF Pro */
+    font-size: 1.1rem;
+    letter-spacing: -0.022em; /* SF Pro looks better with slightly tighter tracking */
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+}
